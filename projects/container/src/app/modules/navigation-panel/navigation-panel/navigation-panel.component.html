@@ -1,0 +1,29 @@
+<div class="navigation-panel">
+  <div class="panel_logo">
+    <app-svg src="/assets/img/logo.svg"></app-svg>
+    <!-- <img [src]="'/projects/container/src/assets/img/logo.svg'" alt=""> -->
+  </div>
+  <nav class="panel_menu">
+    <div class="panel_menu__row">
+      <div class="menu_item">
+        <a
+          [routerLinkActive]="'active'"
+          [routerLinkActiveOptions]="{ exact: false }"
+          routerLink="/configurator"
+          >Конфигуратор</a
+        >
+      </div>
+    </div>
+  </nav>
+  <container-account-nav></container-account-nav>
+</div>
+<!-- <app-grid>
+  <app-grid-tile>
+    <app-svg src="/projects/container/src/assets/img/logo.svg">
+
+    </app-svg>
+
+    <a routerLink="/configurator">Конфигуратор</a>
+    <container-account-nav></container-account-nav>
+  </app-grid-tile>
+</app-grid> -->

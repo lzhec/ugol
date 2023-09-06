@@ -1,0 +1,11 @@
+{
+  "/": {
+    "target": "https://ugol-market-review3.kube-dev.ugol.click/",
+    "secure": true,
+    "pathRewrite": {
+      "^/": ""
+    },
+    "changeOrigin": true
+  }
+}
+

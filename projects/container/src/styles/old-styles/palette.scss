@@ -1,0 +1,34 @@
+$main-color: #ff4058;
+$secondary-color: #5092e1;
+$hover-color: #d33860;
+$accent-color: #e8ecee;
+$background-color: #f8f9fb;
+$background-color-warm: #f5f4f0;
+$border-color: #d5d5d5;
+$divider-color: #eaeaea;
+$dark-color: #3A3D49;
+
+$main-font-color: #000;
+$gray-font-color: #737373;
+$light-gray-font-color: #9e9e9e;
+
+// gray colors
+$main-gray-color: hsl(0, 0%, 45%);
+$light-gray-color: adjust-color($main-gray-color, $lightness: 17);
+$border-gray-color: hsl(0, 0%, 84%);
+$ultra-light-gray-color: hsl(0, 0%, 92%);
+
+// status colors
+$default-color: hsl(213, 71%, 60%);
+$success-color: hsl(129, 64%, 60%);
+$warn-color: hsl(45, 89%, 60%);
+$error-color: hsl(4, 90%, 60%);
+
+$light-blue: #e5f3ff;
+$yellow-light: #FFF7E6;
+$mint-green: #A3C9B3;
+
+$blue-gray: #f8f9fb;
+ // rgba(248, 249, 251, 1);
+$gray-medium-light: #9E9EA7;
+$gray-light: #f8f8f9;

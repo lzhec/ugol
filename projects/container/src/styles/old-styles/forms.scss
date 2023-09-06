@@ -1,0 +1,67 @@
+@import "media";
+
+.form__title {
+  margin-bottom: 0.875rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.form__section:not(:last-child) {
+  margin-bottom: 1.8125rem;
+}
+
+.form__row {
+  display: flex;
+  align-items: center;
+}
+
+.formly__row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -0.75rem;
+
+  > formly-field {
+    margin: 0 0.75rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  @include media('<tablet') {
+    margin: 0;
+    flex-direction: column;
+    > formly-field {
+      margin: 0;
+    }
+  }
+}
+
+.mat-radio-button + .mat-radio-button {
+  margin-left: 0.5rem;
+}
+
+.mat-radio-group {
+  margin: 0 -0.25rem;
+  .mat-radio-button {
+    margin: 0 0.25rem 0.5rem;
+  }
+  @include media('<tablet') {
+    display: flex;
+    flex-direction: column;
+    .mat-radio-button {
+      margin-bottom: 0.5rem;
+      margin-left: 0;
+    }
+  }
+}
+
+.mat-checkbox-layout {
+  min-width: 0;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 1.25;
+  min-width: 0;
+  white-space: normal;
+}
+

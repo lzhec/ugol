@@ -1,0 +1,464 @@
+@import '~@angular/material/theming';
+@import 'palette';
+
+@mixin ugol-mat-form-field-typography($config) {
+  // The unit-less line-height from the font config.
+  $line-height: mat-line-height($config, input);
+
+  // The amount to scale the font for the floating label and subscript.
+  $subscript-font-scale: 0.75;
+  // The amount to scale the font for the prefix and suffix icons.
+  $prefix-suffix-icon-font-scale: 1.5;
+
+  // The amount of space between the top of the line and the top of the actual text
+  // (as a fraction of the font-size).
+  $line-spacing: ($line-height - 1) / 2;
+  // The padding on the infix. Mocks show half of the text size, but seem to measure from the edge
+  // of the text itself, not the edge of the line; therefore we subtract off the line spacing.
+  $infix-padding: 0.5em - $line-spacing;
+  // The margin applied to the form-field-infix to reserve space for the floating label.
+  $infix-margin-top: 1em * $line-height * $subscript-font-scale;
+  // Font size to use for the label and subscript text.
+  $subscript-font-size: $subscript-font-scale * 100%;
+  // Font size to use for the for the prefix and suffix icons.
+  $prefix-suffix-icon-font-size: $prefix-suffix-icon-font-scale * 100%;
+  // The space between the bottom of the .mat-form-field-flex area and the subscript wrapper.
+  // Mocks show half of the text size, but this margin is applied to an element with the subscript
+  // text font size, so we need to divide by the scale factor to make it half of the original text
+  // size. We again need to subtract off the line spacing since the mocks measure to the edge of the
+  // text, not the  edge of the line.
+  $subscript-margin: 0.5em;
+  // The padding applied to the form-field-wrapper to reserve space for the subscript, since it's
+  // absolutely positioned. This is a combination of the subscript's margin and line-height, but we
+  // need to multiply by the subscript font scale factor since the wrapper has a larger font size.
+  $wrapper-padding-bottom: ($subscript-margin * 2 + $line-height) * $subscript-font-scale;
+
+  .mat-form-field {
+    width: 100%;
+    @include mat-typography-level-to-styles($config, input);
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: $wrapper-padding-bottom;
+  }
+
+  .mat-form-field:not(.mat-form-field-type-radio):not(.mat-form-field-type-checkbox) {
+    .mat-form-field-flex {
+      border: 1px solid $border-color;
+    }
+  }
+
+  .mat-form-field.mat-form-field-invalid .mat-form-field-flex {
+    border-color: #ff4058 !important;
+  }
+
+  .mat-form-field-flex {
+    align-items: center;
+    padding: 0 1em;
+    background: #fff;
+    border-radius: 0.25rem;
+  }
+
+  .mat-form-field-prefix {
+    margin-right: 1rem;
+  }
+
+  .mat-form-field-suffix {
+    margin-left: 1rem;
+  }
+
+  .mat-form-field-prefix,
+  .mat-form-field-suffix {
+    // Allow icons in a prefix or suffix to adapt to the correct size.
+    display: flex;
+    align-self: center;
+
+    .mat-icon {
+      font-size: $prefix-suffix-icon-font-size;
+      line-height: 1em;
+      width: 1em;
+      height: 1em;
+    }
+
+    // Allow icon buttons in a prefix or suffix to adapt to the correct size.
+    .mat-icon-button {
+      width: $prefix-suffix-icon-font-scale * 1em;
+      height: $prefix-suffix-icon-font-scale * 1em;
+
+      .mat-icon {
+        width: $line-height * 1em;
+        height: $line-height * 1em;
+        line-height: $line-height;
+      }
+    }
+  }
+
+  .mat-form-field-can-float .mat-form-field-infix {
+    padding: $infix-padding 0;
+    // Throws off the baseline if we do it as a real margin, so we do it as a border instead.
+    border-top: $infix-margin-top + 0.25em solid transparent;
+  }
+
+  .mat-form-field-infix {
+    padding: 1em 0;
+    // Throws off the baseline if we do it as a real margin, so we do it as a border instead.
+    border-top: 0 solid transparent;
+  }
+
+  .mat-form-field-can-float {
+    &.mat-form-field-should-float .mat-form-field-label,
+    .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+      @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top - 0.5em);
+    }
+
+    .mat-form-field-autofill-control:-webkit-autofill + .mat-form-field-label-wrapper .mat-form-field-label {
+      @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top - 0.5em);
+    }
+
+    // Server-side rendered matInput with a label attribute but label not shown
+    // (used as a pure CSS stand-in for mat-form-field-should-float).
+    .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
+      @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top - 0.5em);
+    }
+  }
+
+  .mat-form-field-can-float {
+    .mat-form-field-label-wrapper {
+      top: -$infix-margin-top;
+      padding-top: $infix-margin-top;
+    }
+
+    .mat-form-field-label {
+      top: $infix-margin-top + $infix-padding - 0.5em;
+    }
+  }
+
+  .mat-form-field-label-wrapper {
+    top: 0;
+    padding-top: 0;
+  }
+
+  .mat-form-field-label {
+    top: 1em;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .mat-form-field-subscript-wrapper {
+    // We want the subscript to start at the end of the content box, not the padding box,
+    // so we move it up by the padding amount (adjusted for the smaller font size);
+    top: calc(100% - #{$wrapper-padding-bottom / $subscript-font-scale});
+    margin: $subscript-margin 0 $subscript-margin $subscript-margin;
+    font-size: $subscript-font-size;
+    line-height: 1;
+  }
+
+  .mat-form-field--sm {
+    font-size: 14px;
+    line-height: 1.5rem;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 20px;
+    }
+
+    .mat-form-field-prefix {
+      margin-right: 0.5em;
+    }
+
+    .mat-form-field-suffix {
+      margin-left: 0.5em;
+    }
+
+    .mat-form-field-flex {
+      padding: 0 0.55em;
+    }
+
+    .mat-form-field-label {
+      top: 0.5rem;
+    }
+
+    .mat-form-field-infix {
+      padding-top: 8px;
+      padding-bottom: 6px;
+    }
+
+    &.mat-form-field-can-float {
+      padding-top: 1rem;
+
+      .mat-form-field-infix {
+        //padding: 7px 0 4px;
+        border-top-width: 0;
+      }
+
+      .mat-form-field-label-wrapper {
+        top: 0;
+        padding-top: 0;
+        overflow: visible;
+      }
+    }
+
+    formly-field-mat-input,
+    formly-field-mat-select,
+    formly-field-mat-datepicker,
+    formly-field-mat-textarea {
+      line-height: 24px;
+      font-size: 14px;
+      display: block;
+
+      .mat-select-arrow-wrapper {
+        top: 0 !important;
+      }
+
+      ::ng-deep {
+        .mat-input-element::placeholder {
+          line-height: 24px;
+          font-size: 14px;
+        }
+      }
+
+    }
+
+    input[type=color] {
+      height: 32px;
+      margin-top: -12px;
+      margin-bottom: -8px;
+    }
+
+    $subscript-font-scale: 0.85;
+    $infix-padding: 0;
+    $infix-margin-top: 1.75rem;
+
+    &.mat-form-field-can-float {
+      &.mat-form-field-should-float .mat-form-field-label,
+      .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+
+      .mat-form-field-autofill-control:-webkit-autofill + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+
+      // Server-side rendered matInput with a label attribute but label not shown
+      // (used as a pure CSS stand-in for mat-form-field-should-float).
+      .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+    }
+  }
+
+  .mat-form-field--xs {
+    font-size: 14px;
+    line-height: 1rem;
+
+    .mat-form-field-prefix {
+      margin-right: 0.5em;
+    }
+
+    .mat-form-field-suffix {
+      margin-left: 0.5em;
+    }
+
+    .mat-form-field-flex {
+      padding: 0 0.55em;
+    }
+
+    .mat-form-field-label {
+      top: 0.25rem;
+    }
+
+    .mat-form-field-infix {
+      padding-top: 4px;
+      padding-bottom: 2px;
+    }
+
+    &.mat-form-field-can-float {
+      padding-top: 1rem;
+
+      .mat-form-field-infix {
+        //padding: 7px 0 4px;
+        border-top-width: 0;
+      }
+
+      .mat-form-field-label-wrapper {
+        top: 0;
+        padding-top: 0;
+        overflow: visible;
+      }
+    }
+
+    input[type=color] {
+      height: 32px;
+      margin-top: -12px;
+      margin-bottom: -8px;
+    }
+
+    $subscript-font-scale: 0.85;
+    $infix-padding: 0;
+    $infix-margin-top: 1.5rem;
+
+    &.mat-form-field-can-float {
+      &.mat-form-field-should-float .mat-form-field-label,
+      .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+
+      .mat-form-field-autofill-control:-webkit-autofill + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+
+      // Server-side rendered matInput with a label attribute but label not shown
+      // (used as a pure CSS stand-in for mat-form-field-should-float).
+      .mat-input-server[label]:not(:label-shown) + .mat-form-field-label-wrapper .mat-form-field-label {
+        @include _mat-form-field-label-floating($subscript-font-scale, $infix-padding, $infix-margin-top);
+      }
+    }
+  }
+
+  .mat-form-field--no-padding {
+    .mat-form-field-wrapper {
+      padding: 0;
+    }
+  }
+}
+
+@mixin ugol-mat-form-field-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark-theme: map-get($theme, is-dark);
+
+  // Label colors. Required is used for the `*` star shown in the label.
+  $label-color: mat-color($foreground, secondary-text);
+  $focused-label-color: mat-color($primary);
+  $required-label-color: mat-color($accent);
+
+  // Underline colors.
+  $underline-color: mat-color($foreground, divider, if($is-dark-theme, 0.7, 0.42));
+  $underline-color-accent: mat-color($accent);
+  $underline-color-warn: mat-color($warn);
+  $underline-focused-color: mat-color($primary);
+
+  .mat-form-field.mat-focused {
+    .mat-form-field-flex {
+      border-color: $focused-label-color;
+    }
+
+    .mat-form-field-label {
+      color: $focused-label-color;
+
+      &.mat-accent, &.mat-warn {
+        color: $focused-label-color;
+      }
+    }
+  }
+
+  .mat-form-field.mat-form-field-invalid {
+    .mat-form-field-flex {
+      border-color: $underline-color-warn;
+    }
+  }
+
+  .mat-form-field-appearance-legacy {
+    .mat-form-field-label {
+      color: $light-gray-font-color;
+    }
+  }
+
+  .mat-ugol-gray {
+    .mat-form-field-flex {
+      background: #f7fafc;
+      border-color: #f7fafc; // TODO взять значение из темы
+    }
+  }
+}
+
+.mat-datepicker-toggle {
+  display: flex;
+}
+
+.mat-form-field-has-label:not(.mat-form-field--sm) {
+  .mat-select-arrow-wrapper {
+    position: relative;
+    top: -0.3rem;
+  }
+}
+
+.ugol-checkbox-formly {
+  .mat-form-field-flex {
+    border: none;
+    padding: 0;
+  }
+}
+
+.formly__row--estimate {
+  margin: 0;
+
+  formly-field {
+    margin: 0;
+    width: auto;
+    min-width: 0;
+
+    formly-wrapper-mat-form-field {
+      .mat-form-field {
+        margin-left: -1px;
+
+        .mat-form-field-wrapper {
+          .mat-form-field-flex {
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
+
+  formly-field:first-child {
+    formly-wrapper-mat-form-field {
+      .mat-form-field {
+        margin-left: 0;
+
+        .mat-form-field-wrapper {
+          .mat-form-field-flex {
+            border-radius: 0.25rem 0 0 0.25rem;
+          }
+        }
+      }
+    }
+
+  }
+
+  formly-field:last-child {
+    formly-wrapper-mat-form-field {
+      .mat-form-field {
+        .mat-form-field-wrapper {
+          .mat-form-field-flex {
+            border-radius: 0 0.25rem 0.25rem 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* NEW STYLES */
+
+
+.control-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    color: #9e9e9e;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+
+    &--center {
+      text-align: center;
+    }
+  }
+}

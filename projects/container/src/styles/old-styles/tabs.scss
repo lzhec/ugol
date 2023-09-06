@@ -1,0 +1,91 @@
+// TODO выпилить потом, перейти на материаловские
+
+.tabs__list,
+.tabs__controls {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style: none;
+}
+
+.tabs__header {
+  position: relative;
+}
+
+.tabs__controls {
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  height: 100%;
+}
+
+.tabs__link {
+  display: block;
+  padding: 0;
+  color: #000;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  user-select: none;
+}
+
+.tabs__control_current .tabs__link {
+  color: #373737;
+  font-weight: 500;
+}
+
+.tabs__link:hover {
+  color: #373737;
+}
+
+.tabs__control {
+  position: relative;
+  height: 100%;
+}
+
+.tabs__control_right {
+  margin-left: auto;
+}
+
+.tabs__item {
+  display: none;
+}
+
+.tabs__item_current {
+  display: block;
+}
+
+/*
+PROJECT PAGE CONTENT TABS
+*/
+.project-tab-group {
+  &-labels {
+    display: flex;
+  }
+
+  &-body {
+    background: #fff;
+  }
+
+  .project-tab-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0;
+    min-width: 16rem;
+    cursor: pointer;
+
+    &-content {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 600;
+    }
+
+    &--active {
+      background: #fff;
+    }
+  }
+}

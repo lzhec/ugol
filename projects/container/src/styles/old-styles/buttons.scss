@@ -1,0 +1,211 @@
+@import 'media';
+
+@mixin ugol_button-lg($attach-border-radius: false) {
+  height: 3.5rem;
+
+  @if $attach-border-radius == false {
+    &.mat-rounded-button {
+      border-radius: 4.5rem;
+    }
+  } @else {
+    border-radius: 4.5rem;
+  }
+
+  @include media('<=phone') {
+    height: 3rem;
+  }
+}
+
+@mixin ugol_button-md($attach-border-radius: false) {
+  height: 3rem;
+
+  @if $attach-border-radius == false {
+    &.mat-rounded-button {
+      border-radius: 3.5rem;
+    }
+  } @else {
+    border-radius: 3.5rem;
+  }
+}
+
+@mixin ugol_button-sm($attach-border-radius: false) {
+  height: 2.5rem;
+
+  @if $attach-border-radius == false {
+    &.mat-rounded-button {
+      border-radius: 3.5rem;
+    }
+  } @else {
+    border-radius: 3.5rem;
+  }
+}
+
+button,
+a {
+  &.mat-button,
+  &.mat-flat-button,
+  &.mat-icon-button,
+  &.mat-raised-button,
+  &.mat-stroked-button {
+    padding: 0 1rem;
+    font-size: 14px;
+    line-height: 2.5rem;
+
+    &.mat-button--sm {
+      padding: 0 0.75rem;
+      font-size: 14px;
+      line-height: 2rem;
+      border-radius: 2px;
+    }
+
+    &.mat-button--md {
+      padding: 0 2rem;
+      font-size: 1rem;
+      line-height: 3rem;
+    }
+
+    &.mat-button--lg {
+      padding: 0 2.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 3.5rem;
+    }
+
+    &.mat-rounded-button {
+      border-radius: 1.25rem;
+
+      &.mat-button--md {
+        border-radius: 2rem;
+      }
+
+      &.mat-button--lg {
+        border-radius: 1.75rem;
+      }
+    }
+
+    &.mat-shadowed-button {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    &.mat-button-disabled {
+      box-shadow: none;
+    }
+
+    &.mat-button-disable-hover {
+      padding: 0;
+
+      &:hover .mat-button-focus-overlay {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+button,
+a {
+  &.mat-stroked-button {
+    line-height: calc(2.5rem - 2px); // base line height - border x2
+    &.mat-button--md {
+      line-height: calc(3rem - 2px);
+    }
+
+    &.mat-button--lg {
+      line-height: calc(3.5rem - 2px);
+    }
+  }
+}
+
+.mat-icon-button {
+  padding: 0 !important;
+}
+
+button,
+a {
+  &:not(.mat-icon-button) .mat-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    span + mat-chip {
+      margin-left: 0.5rem;
+    }
+
+    mat-icon[matprefix] {
+      margin-right: auto;
+      margin-left: -0.5rem;
+    }
+
+    mat-icon[matprefix] + span {
+      margin-right: auto;
+      margin-left: -1rem;
+      padding-left: 1.5rem;
+    }
+
+    mat-icon + span {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+button,
+a {
+  &.mat-icon-button .mat-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+.mat-button-loading .mat-button-wrapper {
+  visibility: hidden;
+}
+
+.mat-button-loading .mat-button-loading__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// NEW STYLES
+button, a {
+  &.mat-button,
+  &.mat-flat-button,
+  &.mat-icon-button,
+  &.mat-raised-button,
+  &.mat-stroked-button {
+    &.button--lg {
+      @include ugol_button-lg();
+    }
+
+    &.button--md {
+      @include ugol_button-md();
+    }
+
+    &.button--sm {
+      @include ugol_button-sm();
+    }
+  }
+}
+
+.button-tag {
+  margin-left: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: #000;
+  background: #fff;
+  border-radius: 2rem;
+  line-height: initial;
+
+  &-first {
+    margin-left: 1.5rem;
+  }
+}
+
+.mat-button-icon {
+  mat-icon {
+    color: $secondary-color;
+    margin-right: 0.5rem;
+  }
+}

@@ -8,12 +8,15 @@
     "strict": false,
     "noImplicitOverride": true,
     "paths": {
-      "grid": [
-        "dist/grid"
+      "@grid": [
+        "projects/grid/src/*"
       ],
-      "ui": [
-        "dist/ui"
-      ]
+      "@ui": [
+        "projects/ui/src/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ],
     },
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -22,8 +25,11 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
     "importHelpers": true,
+    "pretty": true,
+    "moduleResolution": "node",
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,

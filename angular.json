@@ -23,15 +23,8 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/container/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/container/src/favicon.ico",
-              "projects/container/src/assets",
-              "assets"
-            ],
-            "styles": [
-              "projects/container/src/styles/main.scss",
-              "styles/main.scss"
-            ],
+            "assets": ["projects/container/src/favicon.ico", "projects/container/src/assets"],
+            "styles": ["projects/container/src/styles/main.scss", "styles/main.scss"],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "projects/container/src/app",
@@ -62,7 +55,7 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "prod": {
               "optimization": {
                 "scripts": true,
                 "styles": {
@@ -85,7 +78,7 @@
                 }
               ]
             },
-            "development": {
+            "dev": {
               "aot": true,
               "buildOptimizer": false,
               "optimization": false,
@@ -101,19 +94,19 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "container:build:production"
+            "prod": {
+              "browserTarget": "container:build:prod"
             },
-            "development": {
-              "browserTarget": "container:build:development"
+            "dev": {
+              "browserTarget": "container:build:dev"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "dev"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -127,14 +120,8 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/container/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/container/src/favicon.ico",
-              "projects/container/src/assets"
-            ],
-            "styles": [
-              "projects/container/src/styles/main.scss",
-              "styles/main.scss"
-            ],
+            "assets": ["projects/container/src/favicon.ico", "projects/container/src/assets"],
+            "styles": ["projects/container/src/styles/main.scss", "styles/main.scss"],
             "scripts": []
           }
         }
@@ -160,20 +147,13 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/configurator/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/configurator/src/favicon.ico",
-              "projects/configurator/src/assets",
-              "assets"
-            ],
-            "styles": [
-              "projects/configurator/src/styles/main.scss",
-              "styles/main.scss"
-            ],
+            "assets": ["projects/configurator/src/favicon.ico", "projects/configurator/src/assets"],
+            "styles": ["projects/configurator/src/styles/main.scss", "styles/main.scss"],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/container/src/app",
-                "projects/container/src/app/shared",
-                "projects/container/src/app/ui",
+                "projects/configurator/src/app",
+                "projects/configurator/src/app/shared",
+                "projects/configurator/src/app/ui",
                 "styles",
                 "styles/typography"
               ]
@@ -199,7 +179,7 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "prod": {
               "optimization": {
                 "scripts": true,
                 "styles": {
@@ -222,7 +202,7 @@
                 }
               ]
             },
-            "development": {
+            "dev": {
               "aot": true,
               "buildOptimizer": false,
               "optimization": false,
@@ -238,19 +218,19 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "configurator:build:production"
+            "prod": {
+              "browserTarget": "configurator:build:prod"
             },
-            "development": {
-              "browserTarget": "configurator:build:development"
+            "dev": {
+              "browserTarget": "configurator:build:dev"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "dev"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -264,14 +244,8 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/configurator/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/configurator/src/favicon.ico",
-              "projects/configurator/src/assets"
-            ],
-            "styles": [
-              "projects/configurator/src/styles.main.scss",
-              "styles/main.scss"
-            ],
+            "assets": ["projects/configurator/src/favicon.ico", "projects/configurator/src/assets"],
+            "styles": ["projects/configurator/src/styles.main.scss", "styles/main.scss"],
             "scripts": []
           }
         }
@@ -289,14 +263,14 @@
             "project": "projects/grid/ng-package.json"
           },
           "configurations": {
-            "production": {
+            "prod": {
               "tsConfig": "projects/grid/tsconfig.lib.prod.json"
             },
-            "development": {
+            "dev": {
               "tsConfig": "projects/grid/tsconfig.lib.json"
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -319,14 +293,14 @@
             "project": "projects/ui/ng-package.json"
           },
           "configurations": {
-            "production": {
+            "prod": {
               "tsConfig": "projects/ui/tsconfig.lib.prod.json"
             },
-            "development": {
+            "dev": {
               "tsConfig": "projects/ui/tsconfig.lib.json"
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

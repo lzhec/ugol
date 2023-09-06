@@ -1,0 +1,85 @@
+@import "media";
+
+@mixin mat-icon-size($size: 24px) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+}
+
+@mixin box() {
+  background-color: #fff;
+  border-radius: 0.25rem;
+}
+
+@mixin overlay-wrapper-override($align: false) {
+  & + .cdk-global-overlay-wrapper {
+    overflow-y: auto;
+    pointer-events: auto;
+
+    @if $align {
+      /* stylelint-disable-next-line */
+      align-items: flex-start !important;
+    }
+  }
+}
+
+@mixin overlay-wrapper-disable-events() {
+  & + .cdk-global-overlay-wrapper {
+    overflow-y: auto;
+    pointer-events: none;
+  }
+}
+
+@mixin mat-table-columns($columns) {
+  .mat-column- {
+    @each $colName, $props in $columns {
+      $width: map-get($props, 'width');
+      &#{ $colName } {
+        width: $width;
+        max-width: $width;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @if map-has-key($props, 'color') {
+          color: map-get($props, 'color');
+        }
+        @if map-has-key($props, 'min-width') {
+          min-width: map-get($props, 'min-width');
+        }
+      }
+    }
+  }
+}
+
+@mixin mat-icon-progress() {
+  .progress {
+    animation: progress 1s infinite;
+  }
+
+  @keyframes progress {
+    @for $i from 0 through 100 {
+      #{$i}% {
+        transform: rotate(#{1.8 *$i}deg);
+      }
+    }
+  }
+}
+
+@mixin masonry_box($columns, $gap, $ratio) {
+  width: calc(100% / #{$columns} - #{$gap});
+  padding: calc((100% / #{$columns} - #{$gap}) * #{$ratio}) 0 0 0;
+}
+
+@mixin masonry_item($ratio, $gap, $columns_desktop, $columns_tablet, $columns_phone) {
+  margin-bottom: #{$gap};
+
+  @include masonry_box(#{$columns_desktop}, #{$gap}, #{$ratio});
+
+  @include media('<desktop') {
+    @include masonry_box(#{$columns_tablet}, #{$gap}, #{$ratio});
+  }
+
+  @include media('<=phone') {
+    @include masonry_box(#{$columns_phone}, #{$gap}, #{$ratio});
+  }
+}
+

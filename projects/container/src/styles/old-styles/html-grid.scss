@@ -1,0 +1,35 @@
+.html-grid::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999999;
+  min-width: 1280px;
+  max-width: 1280px;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  background-image:
+    repeating-linear-gradient(to right,
+    hsla(10, 100%, 58%, 0.15) 0,
+    hsla(10, 100%, 58%, 0.15) 1px,
+    transparent 1px,
+    transparent 8px),
+    repeating-linear-gradient(to right,
+    hsla(10, 100%, 58%, 0.15) 0,
+    hsla(10, 100%, 58%, 0.15) 1px,
+    transparent 1px,
+    transparent 16px),
+    repeating-linear-gradient(to bottom,
+    hsla(10, 100%, 58%, 0.15) 0,
+    hsla(10, 100%, 58%, 0.15) 1px,
+    transparent 1px,
+    transparent 8px),
+    repeating-linear-gradient(to bottom,
+    hsla(10, 100%, 58%, 0.15) 0,
+    hsla(10, 100%, 58%, 0.15) 1px,
+    transparent 1px,
+    transparent 16px);
+  pointer-events: none;
+  content: '';
+}

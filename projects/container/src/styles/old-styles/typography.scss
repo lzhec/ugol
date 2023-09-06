@@ -1,0 +1,340 @@
+@import 'palette';
+@import "media";
+
+$typo-font-size-base: 1rem;
+
+$typo-font-size-4xl: (32 / 16) * $typo-font-size-base; // 2rem
+$typo-font-size-3xl: (24 / 16) * $typo-font-size-base; // 1.5rem
+$typo-font-size-xxl: (22 / 16) * $typo-font-size-base;
+$typo-font-size-xl: (20 / 16) * $typo-font-size-base; // 1.25rem
+$typo-font-size-md: (15 / 16) * $typo-font-size-base;
+$typo-font-size-sm: (14 / 16) * $typo-font-size-base; // 0.875rem
+$typo-font-size-xs: (12 / 16) * $typo-font-size-base; // 0.75rem
+$typo-font-size-xxs: (10 / 16) * $typo-font-size-base;
+
+h1 {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  font-size: $typo-font-size-4xl;
+  line-height: 2.5rem;
+}
+
+h2 {
+  font-size: $typo-font-size-xl;
+  line-height: 2rem;
+}
+
+.typo-catalog {
+  font-weight: 500;
+  font-size: $typo-font-size-3xl;
+  line-height: 2rem;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  font-size: $typo-font-size-xl;
+  line-height: 2rem;
+}
+
+p {
+  font-size: $typo-font-size-base;
+  line-height: 1.5em;
+}
+
+.typo-caption {
+  font-size: $typo-font-size-sm;
+  line-height: 1.5rem;
+}
+
+.typo-caption-muted {
+  @extend .typo-caption;
+
+  color: $gray-font-color;
+}
+
+.typo-caption-hard-muted {
+  @extend .typo-caption;
+
+  color: $light-gray-font-color;
+}
+
+.typo-caption-focus {
+  color: $main-color;
+}
+
+a,
+.ugol-link {
+  color: $secondary-color;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+h1,
+h2,
+span,
+a,
+p {
+  &[data-count] {
+    &::after {
+      display: inline-block;
+      color: $light-gray-font-color;
+      font-weight: 400;
+      font-size: 0.75em;
+      line-height: 1em;
+      white-space: pre;
+      content: '  ' attr(data-count);
+    }
+  }
+}
+
+.text-display-header {
+  margin: 0 0 0.75em;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 500;
+  @include media('<=desktop') {
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  @include media('<=phone') {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.text-main-header {
+  margin: 0 0 0.75em;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  @include media('<=phone') {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.text-main-header--big {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  @include media('<=phone') {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.text-main-header--medium {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  @include media('<=phone') {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 500;
+  }
+}
+
+.text-main-header--small {
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.text-lead {
+  margin: 0 0 0.75em;
+  font-weight: normal;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  @include media('<=desktop') {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.text-lead--extra {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  @include media('<=phone') {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+.text-paragraph {
+  margin: 0 0 0.75em;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-paragraph--medium {
+  font-weight: 500;
+}
+
+.text-paragraph--bold {
+  font-weight: 500;
+}
+
+.text-caption {
+  margin: 0 0 0.75em;
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.text-caption--small {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.text-caption--bold {
+  font-weight: 500;
+}
+
+.text-caption--muted {
+  color: $gray-font-color;
+}
+
+.text-status {
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 16px;
+  letter-spacing: 0.8px;
+}
+
+.text-header {
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 56px;
+
+  @include media('<=phone') {
+    font-size: 1.5rem;
+    line-height: 38px;
+  }
+}
+
+.text-header--sm {
+  font-weight: 500;
+  font-size: 1.625rem;
+  line-height: 36px;
+
+  @include media('<=phone') {
+    font-size: 1.25rem;
+    line-height: 30px;
+  }
+}
+
+.text-header--lg {
+  font-weight: 500;
+  font-size: 4rem;
+  line-height: 72px;
+
+  @include media('<=phone') {
+    font-size: 2.25rem;
+    line-height: 44px;
+  }
+}
+
+.text-subtitle {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 24px;
+
+  @include media('<=phone') {
+    font-size: 0.875rem;
+    line-height: 16px;
+  }
+}
+
+.text-subtitle--sm {
+  font-weight: 500;
+
+  font-size: 0.875rem;
+  line-height: 16px;
+  @include media('<=phone') {
+    font-size: 0.75rem;
+    line-height: 16px;
+  }
+}
+
+.text-subtitle--lg {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 32px;
+
+  @include media('<=phone') {
+    font-size: 1rem;
+    line-height: 24px;
+  }
+}
+
+.text-display-caption {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 24px;
+
+  @include media('<=phone') {
+    font-size: 0.875rem;
+    line-height: 20px;
+  }
+}
+
+.text-display-caption--sm {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 20px;
+
+  @include media('<=phone') {
+    font-size: 0.75rem;
+    line-height: 16px;
+  }
+}
+
+.text-display-caption--lg {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 32px;
+
+  @include media('<=phone') {
+    font-size: 1rem;
+    line-height: 24px;
+  }
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.color-warn {
+  color: $main-color;
+}
+
+.color-muted {
+  color: $gray-medium-light !important;
+}
+
+.color-primary {
+  color: $secondary-color !important;
+}
+
+.page-project-title {
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}

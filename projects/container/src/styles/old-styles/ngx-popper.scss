@@ -1,0 +1,47 @@
+.ngxp__container {
+  // todo убрать z-index из ugol-img
+  z-index: 2;
+  padding: 1rem 1.5rem !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  text-align: left !important;
+  background: #000 !important;
+  border: none !important;
+
+  &--white {
+    background: #fff !important;
+    color: #000 !important;
+
+    & > .ngxp__arrow {
+      display: none;
+    }
+  }
+}
+
+.ngxp__container > .ngxp__arrow {
+  border-color: #000 !important;
+}
+
+.ngxp__container[x-placement^='top'] > .ngxp__arrow {
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.ngxp__container[x-placement^='right'] > .ngxp__arrow {
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.ngxp__container[x-placement^='bottom'] > .ngxp__arrow {
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.ngxp__container[x-placement^='left'] > .ngxp__arrow {
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
